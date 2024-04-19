@@ -185,19 +185,24 @@ public class NotificationsFragment extends Fragment {
         int computedBMR = (int) bmr;
         int computedDAB = (int) dab;
 
-        Log.i("basal metabolic rate", ""+ computedBMR);
-        Log.i("daily activity burn", ""+ computedDAB);
-
-
-        boolean checkUser = databaseHelper.checkFirstUser();
-
         if (!databaseHelper.checkFirstUser()){
             //create user
-//            user.setName(textInputEditTextName.getText().toString().trim());
+            user.setAge(Integer.parseInt(ageTextInputEditText.getText().toString().trim()));
+            user.setGender(genderAutoCompleteTextView.getText().toString().trim());
+            user.setCurrentWeight(Integer.parseInt(currentWeightTextInputEditText.getText().toString().trim()));
+            user.setCurrentWeightType(currentWeightTypeAutoCompleteTextView.getText().toString().trim());
+            user.setHeightFeet(Integer.parseInt(heightFeetTextInputEditText.getText().toString().trim()));
+            user.setHeightInches(Integer.parseInt(heightInchesTextInputEditText.getText().toString().trim()));
+            user.setLifestyle(lifestyleAutoCompleteTextView.getText().toString().trim());
+            user.setTargetWeight(Integer.parseInt(targetWeightTextInputEditText.getText().toString().trim()));
+            user.setTargetWeightType(targetWeightTypeAutoCompleteTextView.getText().toString().trim());
+            user.setBMR(computedBMR);
+            user.setDAB(computedDAB);
+            databaseHelper.addUser(user);
         }else {
             Log.i("TAG", "verifyFromSQLite: update user");
         }
-
+        
 
 
 

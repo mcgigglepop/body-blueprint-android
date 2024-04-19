@@ -3,14 +3,16 @@ package models;
 public class User {
     private int id;
     private int age;
-    private int gender;
+    private String gender;
+    private int currentWeight;
+    private String currentWeightType;
     private int heightFeet;
     private int heightInches;
-    private int currentWeight;
-    private int currentWeightType;
-    private int lifestyle;
+    private String lifestyle;
     private int targetWeight;
-    private int targetWeightType;
+    private String targetWeightType;
+    private int bmr;
+    private int dab;
 
 
     public int getId() {
@@ -32,11 +34,11 @@ public class User {
         this.age = age;
     }
 
-    public int getGender() {
+    public String getGender() {
         // returns the user gender
         return gender;
     }
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         // sets the user gender
         this.gender = gender;
     }
@@ -50,11 +52,11 @@ public class User {
         this.currentWeight = currentWeight;
     }
 
-    public int getCurrentWeightType() {
+    public String getCurrentWeightType() {
         // returns the user current weight type
         return currentWeightType;
     }
-    public void setCurrentWeightType(int currentWeightType) {
+    public void setCurrentWeightType(String currentWeightType) {
         // sets the user current weight type
         this.currentWeightType = currentWeightType;
     }
@@ -75,7 +77,14 @@ public class User {
         // sets the user height inches
         this.heightInches = heightInches;
     }
-
+    public String getLifestyle() {
+        // returns the user lifestyle
+        return lifestyle;
+    }
+    public void setLifestyle(String lifestyle) {
+        // sets the user lifestyle
+        this.lifestyle = lifestyle;
+    }
     public int getTargetWeight() {
         // returns the user target weight
         return targetWeight;
@@ -85,21 +94,30 @@ public class User {
         this.targetWeight = targetWeight;
     }
 
-    public int getTargetWeightType() {
+    public String getTargetWeightType() {
         // returns the user target weight type
         return targetWeightType;
     }
-    public void setTargetWeightType(int targetWeightType) {
+    public void setTargetWeightType(String targetWeightType) {
         // sets the user target weight type
         this.targetWeightType = targetWeightType;
     }
 
-    public int getLifestyle() {
-        // returns the user lifestyle
-        return lifestyle;
+    public int getBMR() {
+        // returns the users bmr
+        return bmr;
     }
-    public void setLifestyle(int lifestyle) {
-        // sets the user lifestyle
-        this.lifestyle = lifestyle;
+    public void setBMR(int bmr) {
+        // sets the users bmr
+        this.bmr = bmr;
+    }
+
+    public int getDAB() {
+        // returns the users dab
+        return dab;
+    }
+    public void setDAB(int dab) {
+        // sets the users dab
+        this.dab = dab;
     }
 }
