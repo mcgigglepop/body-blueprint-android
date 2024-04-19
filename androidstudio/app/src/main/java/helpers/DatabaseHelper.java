@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,68 +94,68 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_USER, null, values);
         db.close();
     }
-//    /**
-//     * This method is to fetch all user and return the list of user records
-//     *
-//     * @return list
-//     */
-//    @SuppressLint("Range")
-//    public List<User> getAllUser() {
-//        // array of columns to fetch
-//        String[] columns = {
-//                COLUMN_USER_ID,
-//                COLUMN_USER_AGE,
-//                COLUMN_USER_GENDER,
-//                COLUMN_USER_HEIGHT_FEET,
-//                COLUMN_USER_HEIGHT_INCHES,
-//                COLUMN_USER_CURRENT_WEIGHT,
-//                COLUMN_USER_CURRENT_WEIGHT_TYPE,
-//                COLUMN_USER_LIFESTYLE,
-//                COLUMN_USER_TARGET_WEIGHT,
-//                COLUMN_USER_TARGET_WEIGHT_TYPE
-//        };
-//        // sorting orders
-//        String sortOrder =
-//                COLUMN_USER_ID + " ASC";
-//        List<User> userList = new ArrayList<User>();
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        // query the user table
-//        /**
-//         * Here query function is used to fetch records from user table this function works like we use sql query.
-//         * SQL query equivalent to this query function is
-//         * SELECT user_id,user_name,user_email,user_password FROM user ORDER BY user_name;
-//         */
-//        Cursor cursor = db.query(TABLE_USER, //Table to query
-//                columns,    //columns to return
-//                null,        //columns for the WHERE clause
-//                null,        //The values for the WHERE clause
-//                null,       //group the rows
-//                null,       //filter by row groups
-//                sortOrder); //The sort order
-//        // Traversing through all rows and adding to list
-//        if (cursor.moveToFirst()) {
-//            do {
-//                User user = new User();
-//                user.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_ID))));
-//                user.setAge(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_AGE))));
-//                user.setGender(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_GENDER))));
-//                user.setHeightFeet(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_HEIGHT_FEET))));
-//                user.setHeightInches(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_HEIGHT_INCHES))));
-//                user.setCurrentWeight(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_CURRENT_WEIGHT))));
-//                user.setCurrentWeightType(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_CURRENT_WEIGHT_TYPE))));
-//                user.setLifestyle(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_LIFESTYLE))));
-//                user.setTargetWeight(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_TARGET_WEIGHT))));
-//                user.setCurrentWeightType(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_TARGET_WEIGHT_TYPE))));
-//
-//                // Adding user record to list
-//                userList.add(user);
-//            } while (cursor.moveToNext());
-//        }
-//        cursor.close();
-//        db.close();
-//        // return user list
-//        return userList;
-//    }
+
+    @SuppressLint("Range")
+    public List<User> getAllUsers() {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_USER_ID,
+                COLUMN_USER_AGE,
+                COLUMN_USER_GENDER,
+                COLUMN_USER_CURRENT_WEIGHT,
+                COLUMN_USER_CURRENT_WEIGHT_TYPE,
+                COLUMN_USER_HEIGHT_FEET,
+                COLUMN_USER_HEIGHT_INCHES,
+                COLUMN_USER_LIFESTYLE,
+                COLUMN_USER_TARGET_WEIGHT,
+                COLUMN_USER_TARGET_WEIGHT_TYPE,
+                COLUMN_USER_BASAL_METABOLIC_RATE,
+                COLUMN_USER_DAILY_ACTIVE_BURN
+        };
+        // sorting orders
+        String sortOrder =
+                COLUMN_USER_ID + " ASC";
+        List<User> userList = new ArrayList<User>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        // query the user table
+        /**
+         * Here query function is used to fetch records from user table this function works like we use sql query.
+         * SQL query equivalent to this query function is
+         * SELECT user_id,user_name,user_email,user_password FROM user ORDER BY user_name;
+         */
+        Cursor cursor = db.query(TABLE_USER, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                User user = new User();
+                user.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_ID))));
+                user.setAge(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_AGE))));
+                user.setGender(cursor.getString(cursor.getColumnIndex(COLUMN_USER_GENDER)));
+                user.setCurrentWeight(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_CURRENT_WEIGHT))));
+                user.setCurrentWeightType(cursor.getString(cursor.getColumnIndex(COLUMN_USER_CURRENT_WEIGHT_TYPE)));
+                user.setHeightFeet(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_HEIGHT_FEET))));
+                user.setHeightInches(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_HEIGHT_INCHES))));
+                user.setLifestyle(cursor.getString(cursor.getColumnIndex(COLUMN_USER_LIFESTYLE)));
+                user.setTargetWeight(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_TARGET_WEIGHT))));
+                user.setTargetWeightType(cursor.getString(cursor.getColumnIndex(COLUMN_USER_TARGET_WEIGHT_TYPE)));
+                user.setBMR(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_BASAL_METABOLIC_RATE))));
+                user.setDAB(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DAILY_ACTIVE_BURN))));
+
+                // Adding user record to list
+                userList.add(user);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // return user list
+        return userList;
+    }
 
     public boolean checkFirstUser() {
         // array of columns to fetch

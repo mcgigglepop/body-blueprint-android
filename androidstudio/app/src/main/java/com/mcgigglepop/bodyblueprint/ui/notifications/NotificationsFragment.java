@@ -75,6 +75,7 @@ public class NotificationsFragment extends Fragment {
 
         initViews(root);
         initObjects();
+        populateTextFields();
 
         // save user data button
         final Button saveButton = binding.saveMaterialButton;
@@ -122,12 +123,15 @@ public class NotificationsFragment extends Fragment {
         targetWeightTextInputLayout = view.findViewById(R.id.targetWeightTextInputLayout);
         targetWeightTextInputEditText = view.findViewById(R.id.targetWeightTextInputEditText);
         targetWeightTypeAutoCompleteTextView = view.findViewById(R.id.targetWeightTypeAutoCompleteTextView);
+
+
     }
 
     private void initObjects() {
         inputValidation = new InputValidation(requireContext());
         databaseHelper = new DatabaseHelper(requireContext());
         user = new User();
+
     }
 
     private void verifyFromSQLite() {
@@ -200,9 +204,9 @@ public class NotificationsFragment extends Fragment {
             user.setDAB(computedDAB);
             databaseHelper.addUser(user);
         }else {
-            Log.i("TAG", "verifyFromSQLite: update user");
+            Log.i("TAG", "update user");
         }
-        
+
 
 
 
@@ -227,5 +231,22 @@ public class NotificationsFragment extends Fragment {
 //                    .show();
 //        }
 
+    }
+
+    private void populateTextFields(){
+        if (databaseHelper.checkFirstUser()) {
+            List<User> userList = databaseHelper.getAllUsers();
+            ageTextInputEditText.setText(String.valueOf(userList.get(0).getAge()));
+            genderAutoCompleteTextView.setText(userList.get(0).getGender());
+            currentWeightTextInputEditText.setText(String.valueOf(userList.get(0).getCurrentWeight()));
+            currentWeightTypeAutoCompleteTextView.setText(userList.get(0).getCurrentWeightType());
+            heightFeetTextInputEditText.setText(String.valueOf(userList.get(0).getHeightFeet()));
+            heightInchesTextInputEditText.setText(String.valueOf(userList.get(0).getHeightInches()));
+            lifestyleAutoCompleteTextView.setText(userList.get(0).getLifestyle());
+            targetWeightTextInputEditText.setText(String.valueOf(userList.get(0).getTargetWeight()));
+            targetWeightTypeAutoCompleteTextView.setText(userList.get(0).getTargetWeightType());
+        }else{
+            Log.i("TAG", "no users");
+        }
     }
 }
