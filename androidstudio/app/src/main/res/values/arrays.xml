@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="gender_array">
+        <item>male</item>
+        <item>female</item>
+        <!-- Add more items as needed -->
+    </array>
+    <array name="weight_array">
+        <item>lbs</item>
+        <item>kg</item>
+        <!-- Add more items as needed -->
+    </array>
+    <array name="lifestyle_array">
+        <item>sedentary</item>
+        <item>moderate</item>
+        <item>active</item>
+        <!-- Add more items as needed -->
+    </array>
+</resources>

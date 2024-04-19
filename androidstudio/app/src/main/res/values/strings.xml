@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Body Blueprint</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="title">Health Data</string>
+    <string name="name">Name</string>
+
+    <string name="error_message_age">enter age</string>
+    <string name="error_message_gender">select gender</string>
+    <string name="error_message_current_weight">enter current weight</string>
+    <string name="error_message_height_feet">enter height feet</string>
+    <string name="error_message_height_inches">enter height in.</string>
+    <string name="error_message_target_weight">enter target weight</string>
+</resources>
